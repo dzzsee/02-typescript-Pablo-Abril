@@ -44,7 +44,6 @@ public class UsuarioJava {
 // - `correo`: de tipo string
 // - `telefono`: de tipo string y OPCIONAL (usa `?`)
 // - `rol`: de tipo literal `"ADMIN" | "DOCENTE" | "ESTUDIANTE"`
-
 export interface PerfilUsuario {
   readonly id: string;
   nombreCompleto: string;
@@ -52,24 +51,15 @@ export interface PerfilUsuario {
   telefono?: string;
   rol: "ADMIN" | "DOCENTE" | "ESTUDIANTE";
 }
-
-// TODO: Completa la variable constante `usuarioEjemplo` asignando valores válidos:
+// DID: Completa la variable constante `usuarioEjemplo` asignando valores válidos:
 export const usuarioEjemplo: PerfilUsuario = {
   id: "UETS-2026-001",
-  nombreCompleto: "",                                // 👈 TODO: Llena tu nombre completo
-  correo: "estudiante@est.salesianos.edu.ec",        // 👈 TODO: Tu correo institucional
+  nombreCompleto: "PABLO ANDRES ABRIL IDROVO",    // 👈 DID: Llena tu nombre completo
+  correo: "pablo.abrili.est@uets.edu.ec",        // 👈 DID: Tu correo institucional
   rol: "ESTUDIANTE"
 };
-
-/**
- * TODO: Implementa `formatearPerfilUsuario`.
- * Formato requerido:
- * `[PERFIL] ID (ROL): NOMBRE - CORREO`
- * (Ejemplo: `[PERFIL] UETS-2026-001 (ESTUDIANTE): Carlos Andrade - carlos@est.salesianos.edu.ec`)
- */
 export function formatearPerfilUsuario(usuario: PerfilUsuario): string {
-  // 👇 TODO: Escribe tu lógica con Template Strings y reemplaza el return "":
-  return "";
+  return ` [PERFIL] ${usuario.id} (${usuario.rol}): ${usuario.nombreCompleto} - ${usuario.correo}`;
 }
 
 // ============================================================================
@@ -101,6 +91,14 @@ export interface ProductoItem {
  * 4. Retornar el número redondeado a 2 decimales: Number(precioFinal.toFixed(2)).
  */
 export function calcularPrecioFinal(producto: ProductoItem): number {
-  // 👇 TODO: Escribe tu lógica aquí y reemplaza el return 0:
-  return 0;
+  if (producto.disponible == false) {
+    return 0;
+  }
+  const descuentoPorcentaje = producto.descuentoPorcentaje ?? 0;
+  if (descuentoPorcentaje > 0) {
+    let descuento = producto.precio * (descuentoPorcentaje / 100);
+    let precioFinal = producto.precio - descuento;
+    return Number(precioFinal.toFixed(2));
+  }
+  return Number(producto.precio.toFixed(2)); 
 }

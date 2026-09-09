@@ -29,8 +29,11 @@
  *   (Pista: usa id.toFixed(0).padStart(6, "0"))
  */
 export function formatearIdentificador(id: string | number): string {
-  // 👇 TODO: Escribe tu lógica con if (typeof id === "string") y reemplaza el return "":
-  return "";
+  if (typeof id === "string") {
+    return `ID-ALFANUMERICO-${id.toUpperCase()}`;
+  } else if (typeof id === "number") {
+    return `ID-NUMERICO-#${id.toFixed(0).padStart(6, '0')}`;
+  }
 }
 
 // ============================================================================
