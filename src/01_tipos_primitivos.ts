@@ -26,19 +26,26 @@
 // - `promedioObjetivo` (number): Debe ser un número decimal (ej. 9.85).
 // - `estaMatriculado` (boolean): Debe ser true.
 
-export const nombreEstudiante: string = "";       // 👈 TODO: Escribe tu nombre aquí
-export const edadEstudiante: number = 0;          // 👈 TODO: Escribe tu edad aquí
-export const promedioObjetivo: number = 0;        // 👈 TODO: Escribe tu promedio objetivo
-export let estaMatriculado: boolean = false;    // 👈 TODO: Cambia a true
+export const nombreEstudiante: string = "Pablo Abril";       // 👈 TODO: Escribe tu nombre aquí
+export const edadEstudiante: number = 17;          // 👈 TODO: Escribe tu edad aquí
+export const promedioObjetivo: number = 10;        // 👈 TODO: Escribe tu promedio objetivo
+export let estaMatriculado: boolean = true;    // 👈 TODO: Cambia a true
 
 /**
- * TODO: Implementa la función `obtenerResumenPersonal` usando Template Strings (${...}).
+ * DID: Implementa la función `obtenerResumenPersonal` usando Template Strings (${...}).
  * Debe retornar una cadena con este formato exacto:
  * `👤 Estudiante: NOMBRE | 🎂 Edad: EDAD años | 🎯 Meta: PROMEDIO/10 | 📋 Estado: MATRICULADO` (o NO_MATRICULADO si es false)
  */
 export function obtenerResumenPersonal(): string {
-  // 👇 TODO: Escribe tu lógica aquí y reemplaza el return "":
-  return "";
+  let estado: string;
+  if (estaMatriculado == true) {
+    estado = "MATRICULADO";
+  }
+  else {
+     estado = "NO_MATRICULADO";
+  }
+  let resumen: string = `👤 Estudiante: ${nombreEstudiante} | 🎂 Edad: ${edadEstudiante} años | 🎯 Meta: ${promedioObjetivo}/10 | 📋 Estado: ${estado}`;
+  return resumen;
 }
 
 // ============================================================================
@@ -54,8 +61,18 @@ export function obtenerResumenPersonal(): string {
  *    (Pista: usa Number((suma / notas.length).toFixed(2)))
  */
 export function calcularPromedio(notas: readonly number[]): number {
-  // 👇 TODO: Escribe tu lógica aquí y reemplaza el return 0:
-  return 0;
+  if (notas.length == 0) {
+    return 0;
+  }
+  else {
+  let suma: number = 0;
+  for (let i = 0; i < notas.length; i++) {
+    suma += notas[i];
+  }
+  let prom: number = (suma / notas.length);
+  let promedio: number = Number(prom.toFixed(2));
+  return promedio;
+  }
 }
 
 // ============================================================================
@@ -78,6 +95,13 @@ export function formatearFichaEstudiante(
   paralelo: "E1" | "E2",
   activo: boolean
 ): string {
-  // 👇 TODO: Escribe tu lógica aquí y reemplaza el return "":
-  return "";
+  let estado3: string;
+  if (activo == true) {
+    estado3 = "MATRICULADO";
+  }
+  else {
+    estado3 = "RETIRADO";
+  }
+  const estado: string = activo ? "MATRICULADO" : "RETIRADO";
+  return `[FICHA UETS] ${nombre.toUpperCase()} (${edad} años) - Paralelo: ${paralelo} - Estado: ${estado}`;
 }
