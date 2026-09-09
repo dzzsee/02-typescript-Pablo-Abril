@@ -70,6 +70,13 @@ export type EstadoPantalla<T> =
  * - Si status === "ERROR": Retornar `❌ Error ${estado.codigo}: ${estado.mensaje}`
  */
 export function renderizarEstadoUI<T>(estado: EstadoPantalla<T>): string {
-  // 👇 TODO: Escribe tu switch(estado.status) aquí y reemplaza el return "":
+ if (estado.status === "LOADING") {
+    return `⏳ Cargando datos (${estado.porcentaje}%)...`;
+  } else if (estado.status === "SUCCESS") {
+    return `🎉 Datos cargados con éxito a las ${estado.hora}`;
+  } else if (estado.status === "ERROR") {
+    return `❌ Error ${estado.codigo}: ${estado.mensaje}`;
+  }
+  return "";
   return "";
 }
